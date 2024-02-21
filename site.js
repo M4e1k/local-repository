@@ -1,14 +1,7 @@
 
 //alert(localStorage.getItem('test') || 'welcome')
 const form = document.querySelector('form')
-const FormData = JSON.parse(localStorage.getItem('test')) || []
-FormData.forEach(kvp => {
-    const[ name, value ] = kvp
-    const element = form.querySelector(`input[name=${name}]`)
-    if (!element) return
-    element.value = value
-    element.dispatchEvent(new Event('input'))
-})
+
 
 
 const allInputs = form.querySelectorAll('input')
@@ -35,3 +28,12 @@ form.addEventListener('submit', e =>{
     localStorage.setItem('test', JSON.stringify(data))
    e.preventDefault()
 } )
+
+const formData = JSON.parse(localStorage.getItem('test')) || []
+formData.forEach(kvp => {
+    const[ name, value ] = kvp
+    const element = form.querySelector(`input[name=${name}]`)
+    if (!element) return
+    element.value = value
+    element.dispatchEvent(new Event('input'))
+})
